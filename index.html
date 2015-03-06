@@ -32,7 +32,7 @@
               dateRange = dateSelect.MPDatepicker('value');
 
           if (eventName) {
-            MP.api.segment(eventName, propName, dateRange).done(function(results) {
+            MP.api.segment(eventName, propName, [dateRange, 'method':'sum']).done(function(results) {
               eventGraph.MPChart('setData', results);
               eventTable.MPTable('setData', results);
             });
@@ -40,7 +40,7 @@
         };
         eventSelect.on('change', function(e, eventName) {
           propSelect.MPPropertySelect('setEvent', eventName);
-          $("#sum").show();
+          $("#by").show();
           runQuery();
         });
         propSelect.on('change', runQuery);
